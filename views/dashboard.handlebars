@@ -1,0 +1,17 @@
+{{#if posts.length}}
+<section>
+    <h2>Blog Posts</h2>
+    <ol class="dashboard-posts">
+        {{#each posts as |post|}}
+        <li>
+            {{> dashboardInfo post}}
+        </li>
+        {{/each}}
+    </ol>
+</section>
+{{else}}
+<section>
+    <h3>You dont have any posts</h3>
+</section>
+{{/if}}
+<button type="submit"><a href="/dashboard/new">Add new Post</a></button>
