@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../helpers/auth');
-const { route } = require('../homeRoute');
+
 
 router.get('/', async (req,res) => {
     try {
@@ -122,3 +122,5 @@ router.delete('/:id', withAuth, async (req, res) => {
         res.status(500).json(err)
     }
 });
+
+module.exports = router;
