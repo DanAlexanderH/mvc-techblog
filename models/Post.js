@@ -21,6 +21,10 @@ Post.init(
                 model: 'user',
                 key: 'id'
             }
+        },
+        postText: {
+            type: DataTypes.STRING,
+            allowNull: false
         }
     },
     {
