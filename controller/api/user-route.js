@@ -50,6 +50,7 @@ try {
         username: req.body.username,
         password: req.body.password
     })
+    console.log(newUser)
     res.status(200).json(newUser)
 } catch (err) {
     console.log(err)
