@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 const withAuth = require('../../helpers/auth');
+
 
 router.get('/', async (req, res) => {
     try {
@@ -70,7 +71,7 @@ router.post('/login', async (req, res) => {
             res.status(400).json({ message: "Incorrect Username or Password!"});
             return
         } 
-        const userPassword = loginUser.checkPassword(req.body.password);
+        const userPassword = loginUser.checkPassword(req.body.password)
         if(!userPassword) {
             res.status(400).json({ message: "Incorrect Username or Password!"});
             return;
@@ -79,8 +80,8 @@ router.post('/login', async (req, res) => {
         req.session.save(() => {
             req.session.user_id = loginUser.id;
             req.session.username = loginUser.username;
-            req.session.logged_in = true;
-            res.json({ user: loginUser, message: "Yoy are logged in!"})
+            req.session.loggedIn = true;
+            res.json({ user: loginUser, message: "You are logged in!"})
         })
 
         } catch(err) {
@@ -89,11 +90,13 @@ router.post('/login', async (req, res) => {
         } 
 });
 
+
+
 //logout user
-router.post('/logout', async (req, res) => {
+router.post('/logout', (req, res) => {
     try {
-        if(req.session.logged_in) {
-            res.session.destroy(() => {
+        if(req.session.loggedIn) {
+            req.session.destroy(() => {
                 res.status(204).end();
             })
         } else {

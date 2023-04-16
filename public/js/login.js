@@ -6,7 +6,7 @@ async function logIn(event) {
     const password = document.querySelector('#login-password').value.trim();
 
     if(username && password) {
-        const respone = await fetch('/api/users/login', {
+        const response = await fetch('/api/users/login', {
             method: 'POST',
             body: JSON.stringify({
                 username,
@@ -18,8 +18,8 @@ async function logIn(event) {
         if(response.ok) {
             document.location.replace('/dashboard');
         } else {
-            console.log(await respone.json());
-            alert(respone.statusText);
+            console.log(await response.json());
+            alert("Username or Password is incorrect");
         }
     }
 }
@@ -34,7 +34,7 @@ async function signUp(event) {
     const password = document.querySelector('#create-password').value.trim();
 
     if(username && password) {
-        const respone = await fetch('/api/users/', {
+        const response = await fetch('/api/users/', {
             method: 'POST',
             body: JSON.stringify({
                 username,
@@ -46,11 +46,11 @@ async function signUp(event) {
         if(response.ok) {
             alert("New User has been created!")
         } else {
-            console.log(await respone.json());
-            alert(respone.statusText);
+            console.log(await response.json());
+            alert(response.statusText);
         }
     }
 };
 
 document.querySelector('.create-form').addEventListener('submit', signUp);
-document.querySelector('.login-form').addEventListener('submit', logIn)
+document.querySelector('.login-form').addEventListener('submit', logIn);

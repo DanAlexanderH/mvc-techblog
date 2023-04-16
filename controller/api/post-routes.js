@@ -3,7 +3,7 @@ const { Post, User, Comment } = require('../../models');
 const withAuth = require('../../helpers/auth');
 
 
-router.get('/', async (req,res) => {
+router.get('/', withAuth, async (req,res) => {
     try {
         const allPost = await Post.findAll({
             attributes: ['id', 'title', 'postText'],
@@ -53,10 +53,10 @@ router.get('/:id', async (req, res) => {
         })
         if(!singlePost) {
             res.status(404).json({ message: 'No Post with this ID!'});
-            return
-        } else {
-            res.status(200).json(singlePost)
-        }
+            return;
+        } 
+        res.json(singlePost)
+        
     } catch(err) {
         console.log(err)
         res.status(500).json(err)
