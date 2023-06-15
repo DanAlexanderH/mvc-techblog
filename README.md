@@ -4,7 +4,7 @@
 
 ## Technologies Used
 <ul>
-    <li>Handlebars</li>
+    <li></li>
     <li>CSS</li>
     <li>Express</li>
     <li>Node.js</li>
